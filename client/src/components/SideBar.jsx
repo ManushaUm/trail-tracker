@@ -79,14 +79,12 @@ const Sidebar = () => {
     );
   };
   return (
-    <div className="w-80  h-full flex flex-col gap-6 p-5 fixed">
-      <h1 className="flex gap-1 items-center">
-        <img
-          src="src/assets/MasterLogo.png"
-          alt="Train Tracker"
-          className="w-30 h-40"
-        />
-      </h1>
+    <div className="w-80  h-full flex flex-col gap-6 p-5">
+      <img
+        src="src/assets/MasterLogo.png"
+        alt="Train Tracker"
+        className="w-30 h-40"
+      />
 
       <div className="flex-1 flex flex-col gap-y-3 py-4">
         {sidebarLinks.map((link) => (
