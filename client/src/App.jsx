@@ -80,8 +80,8 @@ function Layout() {
 
   return user ? (
     //user exists
-    <div className="w-full h-screen flex flex-col md:flex-row">
-      <div className=" bg-white sticky top-0 hidden md:block">
+    <div className="w-full flex flex-col md:flex-row">
+      <div className="className='w-1/5 h-screen bg-white sticky top-0 hidden md:block">
         <Sidebar />
       </div>
 
@@ -90,7 +90,7 @@ function Layout() {
 
       <div className="flex-1 overlay inset-y-auto">
         <Navbar />
-        <div>
+        <div className="p-4 2xl:px-10">
           <Outlet />
         </div>
       </div>
@@ -103,7 +103,7 @@ function Layout() {
 
 function App() {
   return (
-    <main className="w-full min-h-screen bg-[#f3f4f6] ">
+    <main className="w-full min-h-screen bg-[#ede8e8] ">
       <Routes>
         <Route element={<Layout />}>
           <Route element={<Navigate to="/dashboard" />} path="/" />

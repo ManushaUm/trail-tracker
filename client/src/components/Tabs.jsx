@@ -7,13 +7,13 @@ function classNames(...classes) {
 
 export default function Tabs({ tabs, setSelected, children }) {
   return (
-    <div>
+    <div className="w-full px-5">
       <TabGroup>
-        <TabList>
+        <TabList className="flex space-x-6 p-1 rounded">
           {tabs.map((tab, index) => (
             <Tab
-              key={tab.title}
-              onClick={() => setSelected()}
+              key={index + tab.title}
+              onClick={() => setSelected(index)}
               className={({ selected }) =>
                 classNames(
                   "w-fit flex items-center outline-none gap-2 px-3 py-2.5 text-base font-medium leading-5 bg-white",

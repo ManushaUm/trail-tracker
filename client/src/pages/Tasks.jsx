@@ -14,8 +14,8 @@ import { tasks } from "./../assets/data";
 import AddTask from "../components/task/AddTask";
 
 const TABS = [
-  { title: "Board View", icon: <MdGridView /> },
-  { title: "List View", icon: <FaList /> },
+  { title: "Tile View", icon: <MdGridView /> },
+  { title: "List View", icon: <FaList /> }, //board view
 ];
 
 const TASK_TYPE = {

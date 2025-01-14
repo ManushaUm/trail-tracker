@@ -24,21 +24,6 @@ const linkData = [
     icon: <FaTasks />,
   },
   {
-    label: "Completed",
-    link: "tasks/tasks",
-    icon: <MdTaskAlt />,
-  },
-  {
-    label: "In Progress",
-    link: "in-progress/in-progress",
-    icon: <MdOutlinePendingActions />,
-  },
-  {
-    label: "To Do",
-    link: "to-do/to-do",
-    icon: <MdOutlinePendingActions />,
-  },
-  {
     label: "Users",
     link: "users",
     icon: <FaUsers />,
