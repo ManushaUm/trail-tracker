@@ -101,7 +101,7 @@ const TaskDetails = () => {
         {selected === 0 ? (
           <>
             <div className="w-full flex flex-col md:flex-row gap-5 2xl:gap-8 bg-white shadow-md p-8 overflow-y-auto">
-              {/* LEFT */}
+              {/* left */}
               <div className="w-full md:w-1/2 space-y-8">
                 <div className="flex items-center gap-5">
                   <div
@@ -202,7 +202,7 @@ const TaskDetails = () => {
                   </div>
                 </div>
               </div>
-              {/* RIGHT */}
+              {/* right */}
               <div className="w-full md:w-1/2 space-y-8">
                 <p className="text-lg font-semibold">ASSETS</p>
 
