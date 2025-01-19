@@ -37,7 +37,7 @@ const Tasks = () => {
     const fetchTasks = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:8800/tasks");
+        const response = await axios.get("https://trail-tracker-phi.vercel.app/tasks");
         setTasks(response.data);
         setLoading(false);
         //console.log(data);
