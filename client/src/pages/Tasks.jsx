@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
 import { useParams } from "react-router-dom";
 import { FaList } from "react-icons/fa";
@@ -10,8 +10,9 @@ import Tabs from "../components/Tabs";
 import TaskTitle from "../components/TaskTitle";
 import BoardView from "../components/BoardView";
 import Table from "../components/task/Table";
-import { tasks } from "./../assets/data";
+//import { tasks } from "./../assets/data";
 import AddTask from "../components/task/AddTask";
+import axios from "axios";
 
 const TABS = [
   { title: "Tile View", icon: <MdGridView /> },
@@ -29,8 +30,25 @@ const Tasks = () => {
   const [selected, setSelected] = useState(0);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [tasks, setTasks] = useState([]);
   const status = params?.status || "";
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://localhost:8800/tasks");
+        setTasks(response.data);
+        setLoading(false);
+        //console.log(data);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    };
+
+    fetchTasks();
+  }, []);
 
   return loading ? (
     <div className="py-10">

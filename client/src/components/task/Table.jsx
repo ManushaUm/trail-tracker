@@ -38,7 +38,7 @@ const Table = ({ tasks }) => {
         <th className="py-2">Priority</th>
         <th className="py-2 line-clamp-1">Created At</th>
         <th className="py-2">Assets</th>
-        <th className="py-2">Team</th>
+        <th className="py-2">Notes</th>
       </tr>
     </thead>
   );
@@ -91,18 +91,13 @@ const Table = ({ tasks }) => {
       </td>
 
       <td className="py-2">
-        <div className="flex">
-          {task?.team?.map((m, index) => (
-            <div
-              key={m._id}
-              className={clsx(
-                "w-7 h-7 rounded-full text-white flex items-center justify-center text-sm -mr-1",
-                BGS[index % BGS?.length]
-              )}
-            >
-              <UserInfo user={m} />
-            </div>
-          ))}
+        <div className="flex items-center gap-2">
+          <div
+            className={clsx("w-4 h-4 rounded-full", TASK_TYPE[task.stage])}
+          />
+          <p className="w-full line-clamp-2 text-base text-black">
+            {task?.title}
+          </p>
         </div>
       </td>
 

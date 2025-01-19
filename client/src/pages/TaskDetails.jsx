@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBug, FaTasks, FaThumbsUp, FaUser } from "react-icons/fa";
 import { GrInProgress } from "react-icons/gr";
 import {
@@ -14,7 +14,7 @@ import {
 import { RxActivityLog } from "react-icons/rx";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
-import { tasks } from "../assets/data";
+import axios from "axios";
 import Tabs from "../components/Tabs";
 import { PRIOTITYSTYELS, TASK_TYPE, getInitials } from "../utils";
 import Loading from "../components/Loader";
@@ -88,10 +88,24 @@ const act_types = [
 
 const TaskDetails = () => {
   const { id } = useParams();
+  console.log(id); //check the id is updating - checked
 
   const [selected, setSelected] = useState(0);
+  const [task, setTasks] = useState(null);
 
-  const task = tasks[2]; //this complaint detail wil used
+  //const task = tasks[2]; //this complaint detail wil used
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8800/task/${id}`);
+        setTasks(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTasks();
+  }, [id]);
 
   return (
     <div className="w-full flex flex-col gap-3 mb-4 overflow-y-hidden">
@@ -119,7 +133,7 @@ const TaskDetails = () => {
                     <div
                       className={clsx(
                         "w-4 h-4 rounded-full",
-                        TASK_TYPE[task.stage]
+                        TASK_TYPE["todo"] //update here for task stage ====
                       )}
                     />
                     <span className="text-black uppercase">{task?.stage}</span>
@@ -146,31 +160,8 @@ const TaskDetails = () => {
 
                 <div className="space-y-4 py-6">
                   <p className="text-gray-600 font-semibold test-sm">
-                    TASK TEAM
+                    Description
                   </p>
-                  <div className="space-y-3">
-                    {task?.team?.map((m, index) => (
-                      <div
-                        key={index}
-                        className="flex gap-4 py-2 items-center border-t border-gray-200"
-                      >
-                        <div
-                          className={
-                            "w-10 h-10 rounded-full text-white flex items-center justify-center text-sm -mr-1 bg-blue-600"
-                          }
-                        >
-                          <span className="text-center">
-                            {getInitials(m?.name)}
-                          </span>
-                        </div>
-
-                        <div>
-                          <p className="text-lg font-semibold">{m?.name}</p>
-                          <span className="text-gray-500">{m?.title}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
                 </div>
 
                 <div className="space-y-4 py-6">

@@ -1,52 +1,24 @@
 import mongoose, { Schema } from "mongoose";
 
-const taskkSchema = new Schema(
+const taskSchema = new Schema(
   {
     title: { type: String, required: true },
-    date: { type: Date, default: new Date() },
+    description: { type: String },
+    date: { type: Date, default: Date.now },
     priority: {
       type: String,
       default: "normal",
-      enum: ["high", "medium", "normal", "low"], //client priorities
+      enum: ["high", "medium", "normal", "low"], // client priorities
     },
     stage: {
       type: String,
       default: "todo",
-      enum: ["todo", "in progress", "completed"], //client stages
+      enum: ["todo", "in progress", "completed"], // client stages
     },
-    activities: [
-      {
-        type: {
-          type: String,
-          default: "assigned",
-          enum: [
-            "assigned",
-            "started",
-            "in progress",
-            "bug",
-            "completed",
-            "commented",
-          ],
-        },
-        activity: String,
-        date: { type: Date, default: new Date() },
-        by: { type: Schema.Types.ObjectId, ref: "User" },
-      },
-    ],
-
-    subTasks: [
-      {
-        title: String,
-        date: Date,
-        tag: String,
-      },
-    ],
-    assets: [String],
-    team: [{ type: Schema.Types.ObjectId, ref: "User" }],
     isTrashed: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
 
-const Task = mongoose.model("Task", taskkSchema);
+const Task = mongoose.model("Task", taskSchema);
 export default Task;
