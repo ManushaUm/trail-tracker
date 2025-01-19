@@ -18,7 +18,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://deploy-mern-1whq.vercel.app"],
+    origin: ["https://trail-tracker-phi.vercel.app/"],
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
