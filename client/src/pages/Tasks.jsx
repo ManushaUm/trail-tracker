@@ -14,6 +14,8 @@ import Table from "../components/task/Table";
 import AddTask from "../components/task/AddTask";
 import axios from "axios";
 
+require('dotenv').config();
+
 const TABS = [
   { title: "Tile View", icon: <MdGridView /> },
   { title: "List View", icon: <FaList /> }, //board view
@@ -37,7 +39,9 @@ const Tasks = () => {
     const fetchTasks = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("https://trail-tracker-phi.vercel.app/tasks");
+        const URL = process.env.NODE_ENV === "Production" ? process.env.REACT_APP_DEV_URL : process.env.REACT_APP_PRODUCTION_URL; 
+        
+        const response = await axios.get(URL);
         setTasks(response.data);
         setLoading(false);
         //console.log(data);
